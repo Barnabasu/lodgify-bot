@@ -18,13 +18,11 @@ jobs:
         with:
           python-version: '3.x'
 
-    - name: Install Chromium & Chromedriver
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y chromium-browser chromium-chromedriver
-        # Upewnij się że chromedriver jest w PATH
-        sudo ln -sf /usr/lib/chromium-browser/chromedriver /usr/local/bin/chromedriver
-        sudo chmod +x /usr/local/bin/chromedriver
+  - name: Setup Chrome
+    uses: browser-actions/setup-chrome@v1
+
+  - name: Setup ChromeDriver
+    uses: browser-actions/setup-chromedriver@v1
 
       - name: Install dependencies
         run: pip install selenium python-dotenv google-api-python-client google-auth-httplib2 google-auth-oauthlib
